@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Common Beginner Mistakes with React",
+      "dateTime": "July 01, 2021 11:17:36 AM",
+      "body": "A couple years ago, I was teaching React at a local coding bootcamp, and I noticed that there were a handful of things that kept catching students off guard. People kept falling into the same pits!In this tutorial, we're going to explore 9 of the most common gotchas. You'll learn how to steer around them, and hopefully avoid a lot of frustration. In order to keep this blog post light and breezy, we won't dig too much into the reasons behind these gotchas. This is more of a quick reference."
+    },
+    {
+      "id": 2,
+      "title": "Data Binding in React",
+      "dateTime": "July 01, 2021 11:17:36 AM",
+      "body": "Well, it depends on the type of form control: text inputs, selects, checkboxes, and radio buttons all work a little bit differently. The good news is that while the details vary, they all share the same fundamental mechanism. There's a consistent philosophy in React when it comes to data binding. In this tutorial, we'll first learn how React approaches data binding, and then I'll show you how each form field works, one by one. We'll look at complete, real-world examples. I'll also share some tips I've learned over the years, and some “gotchas” to watch out for!"
+    },
+    {
+      "id": 3,
+      "title": "Announcing “use-sound”, a React Hook for Sound Effects",
+      "dateTime": "July 01, 2021 11:17:36 AM",
+      "body": "However, I believe that this is the bathwater around a baby very much worth saving. Sounds can accentuate user actions, emphasize feedback, and add a bit of delight to an otherwise humdrum action. When done tastefully, sound can make a product feel more tangible and real. This isn't a new idea: video games and mobile apps use sound all the time. In fact, the web is the odd one out; most forms of digital media I can think of uses sound.* When I built this blog, I wanted to experiment with this. Many UI controls make little sounds when they're interacted with. Here's a quick selection from this site:"
+    },
+    {
+      "id": 4,
+      "title": "Machine learning",
+      "dateTime": "May 19, 2023 8:30:13 PM",
+      "body": "The use and development of computer systems that are able to learn and adapt without following explicit instructions, by using algorithms and statistical models to analyze and draw inferences from patterns in data."
+    }
+  ]
+}
