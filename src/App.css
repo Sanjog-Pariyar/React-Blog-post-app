@@ -10,8 +10,6 @@ header {
   height: 60px;
   background-color: lightseagreen;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 10px;
   cursor: pointer;
 }
@@ -21,6 +19,7 @@ header a {
   font-weight: 700;
   color: #242424;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 footer {
@@ -170,5 +169,5 @@ footer {
 }
 
 .about {
-  min-height: 450px;
+  min-height: 76vh;
 }
