@@ -1,8 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import DataContext from "./context/DataContext";
+import api from './api/posts';
+import { format } from 'date-fns';
 
 
-function EditPost({ posts, handleEdit, editTitle, setEditTitle, editBody, setEditBody }) {
+function EditPost() {
+
+    const [ editTitle, setEditTitle ] = useState('');
+    const [ editBody, setEditBody ] = useState('');
+
+    const { posts, setPosts } = useContext(DataContext);
 
     const { id } = useParams();
     const post = posts.find((post) => (post.id).toString() === id)
@@ -14,12 +22,35 @@ function EditPost({ posts, handleEdit, editTitle, setEditTitle, editBody, setEdi
         }
     }, [post, setEditTitle, setEditBody])
 
+    const handleEdit = async(id) => {
+        const cDate = format(new Date(), 'MMMM dd, yyyy pp')
+
+        const updatedPost = {
+            id: id,
+            title: editTitle,
+            dateTime: cDate,
+            body: editBody
+        }
+
+        try {
+            const response = await api.put(`/posts/${id}`, updatedPost);
+            setPosts(posts.map((post) => post.id === id ? {...response.data} : post))
+            setEditTitle('');
+            setEditBody('');
+        } catch(err) {
+            console.log(`Error: ${err.message}`);
+        }
+        }
+
     return(
         <main className="NewPost">
             {editTitle &&
             <>
                 <h3>Edit Post</h3>
-                <form className="NewPostForm" onSubmit={(e) => e.preventDefault()}>
+                <form className="NewPostForm" onSubmit={(e) => {
+                    e.preventDefault()
+                    handleEdit(post.id)
+                }}>
                     <label htmlFor="postTitle">Title: </label>
                     <input 
                         autoFocus
@@ -39,11 +70,7 @@ function EditPost({ posts, handleEdit, editTitle, setEditTitle, editBody, setEdi
                         onChange={(e) => setEditBody(e.target.value)}>
                     </textarea>
 
-                    <button
-                        type="submit"
-                        onClick={() => handleEdit(post.id)}>
-                            Add Post
-                    </button>
+                    <button>Submit</button>
                 </form>
             </>
             }

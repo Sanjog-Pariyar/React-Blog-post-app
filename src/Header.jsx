@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { BsPhone } from "react-icons/bs";
 import { FaTabletAlt, FaLaptop } from "react-icons/fa";
+import useWindowSize from "./hooks/useWindowSize";
 
+function Header({ title }) {
 
-function Header({ title, width }) {
+    const { width } = useWindowSize();
+
     return(
         <header>
             <Link to={'/'}>

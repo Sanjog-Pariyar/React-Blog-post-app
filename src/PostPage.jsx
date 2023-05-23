@@ -1,9 +1,24 @@
 import { useParams, Link } from "react-router-dom";
+import { useContext } from "react";
+import DataContext from "./context/DataContext";
+import api from './api/posts';
 
-function PostPage({ posts, handleDelete }) {
+function PostPage() {
+
+    const { posts, setPosts } = useContext(DataContext);
 
     const { id } = useParams();
     const post = posts.find((post) => (post.id).toString() === id);
+
+    const handleDelete = async(id) => {
+        try {
+            await api.delete(`/posts/${id}`);
+            const filteredItems = posts.filter((post) => post.id !== id );
+            setPosts(filteredItems);
+        } catch(err) {
+            console.log(`Error: ${err.message}`);
+        }
+    }
 
     return(
         <main className="postPage">
@@ -28,7 +43,7 @@ function PostPage({ posts, handleDelete }) {
                 }
                 { !post && 
                     <>
-                        <p style={{ marginTop: "2rem", color: "teal" }}>No Post Available</p>
+                        <p style={{ marginTop: "2rem", color: "teal" }}>Deleted!</p>
                         <p><Link to={'/'}>Go to Home Page</Link></p>
                     </>
                     

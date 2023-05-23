@@ -1,4 +1,40 @@
-function NewPost({ postTitle, setPostTitle, postBody, setPostBody, handleSubmit }) {
+import { useState, useContext } from "react";
+import DataContext from "./context/DataContext";
+import api from './api/posts'
+import { format } from 'date-fns';
+
+
+function NewPost() {
+
+    const [postTitle, setPostTitle] = useState('');
+    const [postBody, setPostBody] = useState('');
+
+    const { posts, setPosts } = useContext(DataContext);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+        const cDate = format(new Date(), 'MMMM dd, yyyy pp')
+
+        const post = {
+            id: id,
+            title: postTitle,
+            dateTime: cDate,
+            body: postBody
+        }
+
+        try {
+            const response = await api.post('/posts', post);
+
+            const newPost = [...posts, response.data];
+            setPosts(newPost);
+            setPostTitle('');
+            setPostBody('');
+        } catch(err) {
+            console.log(`Error: ${err.message}`);
+        }
+    }
+
     return(
         <main className="NewPost">
             <h3>New Post</h3>
