@@ -9,29 +9,41 @@ import About from './About'
 import Missing from './Missing'
 import EditPost from './EditPost'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import { DataProvider } from './context/DataContext'
+import { useEffect } from 'react'
+import useAxiosFetch from './hooks/useAxiosFetch'
+import { useStoreActions } from 'easy-peasy'
 
 
 function App() {
+  
+  const setPosts = useStoreActions((actions) => actions.setPosts)
+
+  const {data, fetchError, isLoading} = useAxiosFetch('http://localhost:3500/posts')
+
+  useEffect(() => {
+      setPosts(data);
+  }, [data, setPosts]);
+
 
   return (
       <Router>
         <div className='App'>
-            <Header title = 'React JS Blog'/>
-            <DataProvider>
-              <Nav />
-              <main className='main-content'>
-                <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/new-post' element={<NewPost />} />
-                  <Route path='/edit-post/:id' element={<EditPost />} />
-                  <Route path='/post/:id' element={<PostPage />} />
-                  <Route path='/about' element={<About />} />
-                  <Route path='/*' element={<Missing />} />
-                </Routes>
-              </main>
-            </DataProvider>
-            <Footer />
+          <Header title = 'React JS Blog'/>
+            <Nav />
+            <main className='main-content'>
+              <Routes>
+                <Route path='/' element={<Home 
+                  isLoading = {isLoading}
+                  fetchError = {fetchError}
+                />} />
+                <Route path='/new-post' element={<NewPost />} />
+                <Route path='/edit-post/:id' element={<EditPost />} />
+                <Route path='/post/:id' element={<PostPage />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/*' element={<Missing />} />
+              </Routes>
+            </main>
+          <Footer />
         </div>
     </Router>
   )
