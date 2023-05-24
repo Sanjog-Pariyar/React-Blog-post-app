@@ -17,18 +17,6 @@
       "title": "Announcing “use-sound”, a React Hook for Sound Effects",
       "dateTime": "July 01, 2021 11:17:36 AM",
       "body": "However, I believe that this is the bathwater around a baby very much worth saving. Sounds can accentuate user actions, emphasize feedback, and add a bit of delight to an otherwise humdrum action. When done tastefully, sound can make a product feel more tangible and real. This isn't a new idea: video games and mobile apps use sound all the time. In fact, the web is the odd one out; most forms of digital media I can think of uses sound.* When I built this blog, I wanted to experiment with this. Many UI controls make little sounds when they're interacted with. Here's a quick selection from this site:"
-    },
-    {
-      "id": 4,
-      "title": "Machine learning",
-      "dateTime": "May 19, 2023 8:30:13 PM",
-      "body": "The use and development of computer systems that are able to learn and adapt without following explicit instructions, by using algorithms and statistical models to analyze and draw inferences from patterns in data."
-    },
-    {
-      "id": 5,
-      "title": "React",
-      "dateTime": "May 23, 2023 2:20:00 PM",
-      "body": "hi, hello"
     }
   ]
 }

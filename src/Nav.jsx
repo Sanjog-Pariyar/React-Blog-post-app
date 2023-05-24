@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import DataContext from "./context/DataContext";
 
 function Nav() {
 
-    const { search, setSearch } = useContext(DataContext);
+    const [ search, setSearch ] = useState('');
+
+    const { posts, setSearchResult } = useContext(DataContext);
+
+    useEffect(() => {
+        const filteredResult = posts.filter((post) => {
+        const lowercaseBody = post.body ? post.body.toLowerCase() : '';
+        const lowercaseTitle = post.title ? post.title.toLowerCase() : '';
+
+        return lowercaseBody.includes(search.toLowerCase()) || lowercaseTitle.includes(search.toLowerCase());
+    });
+
+        setSearchResult(filteredResult.reverse());
+    }, [posts, search]);
     
     return(
         <nav className="nav">
