@@ -8,8 +8,6 @@ To run:
 
 Requirement - NodeJs, npm
 
-- Clone Repository
-
 - npm install 
 
 - npm run dev
