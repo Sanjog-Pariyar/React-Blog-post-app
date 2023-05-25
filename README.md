@@ -1,1 +1,1 @@
-This branch is without any custom hooks.
+easy-peasy-redux is the latest/final branch.
