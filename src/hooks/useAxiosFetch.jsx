@@ -17,7 +17,7 @@ const useAxiosFetch = (dataUrl) => {
                     cancelToken: source.token
                 });
                 if (isMounted) {
-                    setData(response.data);
+                    setData(response.data.allBlogs);
                     setFetchError(null);
                 }
             } catch (err) {

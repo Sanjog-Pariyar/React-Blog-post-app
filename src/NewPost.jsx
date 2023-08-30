@@ -16,14 +16,12 @@ function NewPost() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const cDate = format(new Date(), 'MMMM dd, yyyy pp')
 
         const post = {
-            id: id,
             title: postTitle,
             dateTime: cDate,
-            body: postBody
+            mainContent: postBody
         }
 
         savePost(post)

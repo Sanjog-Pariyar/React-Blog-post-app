@@ -23,7 +23,7 @@ function EditPost() {
     useEffect(() => {
         if (post) {
             setEditTitle(post.title);
-            setEditBody(post.body)
+            setEditBody(post.mainContent)
         }
     }, [post, setEditTitle, setEditBody])
 
@@ -32,10 +32,10 @@ function EditPost() {
         const cDate = format(new Date(), 'MMMM dd, yyyy pp')
 
         const updatedPost = {
-            id: id,
+            id: post._id,
             title: editTitle,
             dateTime: cDate,
-            body: editBody
+            mainContent: editBody
         }
 
         editPost(updatedPost);
@@ -50,7 +50,7 @@ function EditPost() {
                 <h3>Edit Post</h3>
                 <form className="NewPostForm" onSubmit={(e) => {
                     e.preventDefault()
-                    handleEdit(post.id)
+                    handleEdit(post._id)
                 }}>
                     <label htmlFor="postTitle">Title: </label>
                     <input 

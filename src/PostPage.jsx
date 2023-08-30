@@ -15,6 +15,8 @@ function PostPage() {
         deletePost(id)
     }
 
+
+
     return(
         <main className="postPage">
             <article className="post">
@@ -22,8 +24,8 @@ function PostPage() {
                     <>
                         <h4 className="title">{post.title}</h4>
                         <p>{post.dateTime}</p>
-                        <p className="postBody">{post.body}</p>
-                        <Link to={`/edit-post/${post.id}`}>
+                        <p className="postBody">{post.mainContent}</p>
+                        <Link to={`/edit-post/${post._id}`}>
                             <button
                                 id="editPost">
                                     Edit post
@@ -31,7 +33,7 @@ function PostPage() {
                         </Link>
                         <button 
                             id="deletePost"
-                            onClick={() => handleDelete(post.id)}>
+                            onClick={() => handleDelete(post._id)}>
                             Delete Post
                         </button>
                     </>

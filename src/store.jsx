@@ -32,13 +32,13 @@ export default createStore({
     }),
     postCount: computed((state) => state.posts.length),
     getPostById: computed((state) => {
-        return ((id) => state.posts.find((post) => (post.id).toString() === id));
+        return ((id) => state.posts.find((post) => (post._id).toString() === id));
     }),
     savePost: thunk(async (actions, newPost, helpers) => {
         const { posts } = helpers.getState();
         try {
-            const response = await api.post('/posts', newPost);
-            actions.setPosts([...posts, response.data]);
+            const response = await api.post('/api/v1/blogs', newPost);
+            actions.setPosts([...posts, response.data.createdBlogs])
             actions.setPostTitle('');
             actions.setPostBody('');
         } catch(err) {
@@ -48,8 +48,8 @@ export default createStore({
     deletePost: thunk(async (actions, id, helpers) => {
         const { posts } = helpers.getState();
         try {
-            await api.delete(`/posts/${id}`);
-            actions.setPosts(posts.filter((post) => post.id !== id ));
+            await api.delete(`/api/v1/blogs/${id}`);
+            actions.setPosts(posts.filter((post) => post._id !== id ));
         } catch(err) {
             console.log(`Error: ${err.message}`);
         }
@@ -58,8 +58,11 @@ export default createStore({
         const { posts } = helpers.getState();
         const { id } = updatedPost;
         try {
-            const response = await api.put(`/posts/${id}`, updatedPost);
-            actions.setPosts(posts.map((post) => post.id === id ? {...response.data} : post))
+            const response = await api.patch(`/api/v1/blogs/${id}`, updatedPost);
+            // console.log(response);
+            actions.setPosts(posts.map((post) => post.id === id ? {...response.data.blog} : post))
+            // console.log(posts);
+            // actions.setPosts(posts.map((post) => post._id === id ? 'true': 'false'))
             actions.setEditTitle('');
             actions.setEditBody('');
         } catch(err) {
